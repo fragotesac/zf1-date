@@ -37,7 +37,6 @@ if (!defined('TESTS_ZEND_I18N_EXTENDED_COVERAGE')) {
 /**
  * Zend_Date
  */
-require_once 'Zend/Loader.php';
 require_once 'Zend/Date.php';
 require_once 'Zend/Locale.php';
 require_once 'Zend/Date/Cities.php';
@@ -5372,7 +5371,6 @@ class Zend_DateTest extends PHPUnit\Framework\TestCase
     public function testZF3677()
     {
         $locale = new Zend_Locale('de_AT');
-        require_once 'Zend/Registry.php';
         Zend_Registry::set('Zend_Locale', $locale);
 
         $date   = new Zend_Date('13',null,$locale);
