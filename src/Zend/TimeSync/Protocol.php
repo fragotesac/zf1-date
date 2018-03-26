@@ -58,6 +58,11 @@ abstract class Zend_TimeSync_Protocol
     protected $_info = array();
 
     /**
+     * @var int
+     */
+    protected $_port;
+
+    /**
      * Abstract method that prepares the data to send to the timeserver
      *
      * @return mixed

@@ -44,7 +44,7 @@ class Zend_TimeSync implements IteratorAggregate
     /**
      * Holds a reference to the timeserver that is currently being used
      *
-     * @var object|false
+     * @var Zend_TimeSync_Protocol|false
      */
     protected $_current;
 
@@ -130,7 +130,7 @@ class Zend_TimeSync implements IteratorAggregate
                 $this->_addServer($server, $key);
             }
         } else {
-            $this->_addServer($target, $alias);
+            $this->_addServer($target, (string) $alias);
         }
     }
 
@@ -188,7 +188,7 @@ class Zend_TimeSync implements IteratorAggregate
      * If no alias is given it will return the current timeserver
      *
      * @param   string|integer $alias - The alias from the timeserver to return
-     * @return  object
+     * @return  Zend_TimeSync_Protocol
      * @throws  Zend_TimeSync_Exception
      */
     public function getServer($alias = null)

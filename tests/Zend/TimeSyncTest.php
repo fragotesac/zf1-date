@@ -20,10 +20,6 @@
  * @version    $Id$
  */
 
-/**
- * Zend_timeSync
- */
-require_once 'Zend/TimeSync.php';
 
 /**
  * @category   Zend
@@ -123,12 +119,8 @@ class Zend_TimeSyncTest extends PHPUnit\Framework\TestCase
      */
     public function testInitUnknownScheme()
     {
-        try {
-            $server = new Zend_TimeSync('http://time.windows.com', 'windows_time');
-            $this->fail('Exception expected because we supplied an invalid protocol');
-        } catch (Zend_TimeSync_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_TimeSync_Exception::class);
+        $server = new Zend_TimeSync('http://time.windows.com', 'windows_time');
     }
 
     /**
@@ -174,12 +166,8 @@ class Zend_TimeSyncTest extends PHPUnit\Framework\TestCase
     {
         $server = new Zend_TimeSync();
 
-        try {
-            $result = $server->getOptions('foobar');
-            $this->fail('Exception expected because we supplied an invalid option key');
-        } catch (Zend_TimeSync_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_TimeSync_Exception::class);
+        $result = $server->getOptions('foobar');
     }
 
     /**
@@ -191,12 +179,8 @@ class Zend_TimeSyncTest extends PHPUnit\Framework\TestCase
     {
         $server = new Zend_TimeSync();
 
-        try {
-            $server->setServer('unknown_alias');
-            $this->fail('Exception expected because there is no timeserver which we can mark as current');
-        } catch (Zend_TimeSync_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_TimeSync_Exception::class);
+        $server->setServer('unknown_alias');
     }
 
     /**
@@ -208,12 +192,8 @@ class Zend_TimeSyncTest extends PHPUnit\Framework\TestCase
     {
         $server = new Zend_TimeSync();
 
-        try {
-            $result = $server->getServer();
-            $this->fail('Exception expected because there is no current timeserver set');
-        } catch (Zend_TimeSync_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_TimeSync_Exception::class);
+        $result = $server->getServer();
     }
 
     /**
@@ -225,12 +205,8 @@ class Zend_TimeSyncTest extends PHPUnit\Framework\TestCase
     {
         $server = new Zend_TimeSync();
 
-        try {
-            $result = $server->getServer('none_existing_server_alias');
-            $this->fail('Exception expected, because the requested timeserver does not exist');
-        } catch (Zend_TimeSync_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_TimeSync_Exception::class);
+        $result = $server->getServer('none_existing_server_alias');
     }
 
     /**
